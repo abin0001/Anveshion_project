@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>HerbLens Camera</title>
+        <link rel="stylesheet" href="{{ url_for('static',filename = 'style.css')}}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      </head>
+    <body>
+        <div id="my_camera"></div>
+
+<!-- First, include the Webcam.js JavaScript Library -->
+<script type="text/javascript" src="{{ url_for('static', filename='style.js')}}"></script>
+
+<!-- Configure a few settings and attach camera -->
+<script language="JavaScript">
+	Webcam.set({
+		width: 500,
+		height: 300,
+		dest_width: 200, 
+		dest_height: 180,
+		image_format: 'jpeg',
+		jpeg_quality: 90
+	});
+	Webcam.attach( '#my_camera' );
+</script>
+
+<!-- A button for taking snaps -->
+<form>
+	<input type=button value="Take Snapshot" onClick="take_snapshot()" style="float:left; width:180px; height:40px;"/>
+</form> 
+<form method="post" enctype="multipart/form-data">   
+    <input type="submit" id="results" name="image" value="submit" style="float:right; width:180px; height:40px; background:rgba(0,102,51,1)"  />
+    </form>
+<script language="JavaScript">
+$(document).ready(function(){
+	$('#image').click(function(){
+		var image_name= $('#results').val();
+		if (image_name==''){
+			alert('please take snapshot');
+			return false;
+			
+			}
+			else
+			{
+			var extension =$('#results').val().split('.').pop().toLowerCase();
+			if(jquery.inArray(extension,['gif','png','jpeg','jpg']) == -1)
+	{
+		alert('invalid image');
+		$('results').val('');
+		return false;
+	}
+
+				}
+		
+		
+		});
+	
+	});
+</script>
+
+<!-- Code to handle taking the snapshot and displaying it locally -->
+<script language="JavaScript">
+	function take_snapshot() {
+		// take snapshot and get image data
+		Webcam.snap( function(data_uri) {
+			// display results in page
+			
+				
+			Webcam.upload( data_uri, 'saveimage.php', function(code, text) {
+				document.getElementById('results').innerHTML = 
+				'<h2>Patient image:</h2>' + 
+				'<img src="'+text+'"/>';
+			} );	
+		} );
+	}
+</script>
+    </body>
+</html>
+
