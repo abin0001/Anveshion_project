@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'><link rel="stylesheet" href="{{ url_for('static',filename='styles/bpm.css') }}">
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="container">
+  <div id="tapper" class="hits">
+    <div id="heart"><i class="material-icons">favorite</i></div>
+    <div class="text laptop">Start pressing any key or tapping here along with your heartbeat</div>
+  </div>
+  <div id="milliseconds" class="hits">Seconds:
+    <span id="millisecondNum">0</span>
+  </div>
+  <div id="bps" class="hits">Heartrate:
+    <span id="bpsNum">0</span> bpm
+  </div>
+  <button id="stop">Stop</button>
+  <button id="reset">Reset</button>
+ 
+</div>
+
+<div class="nav">
+  <a class="btn" href="{{url_for('recomend')}}">Recomendation</a>
+  <a class="btn" href="{{url_for('chat')}}">Recipie Generator</a>
+</div>
+
+
+<!-- partial -->
+  <script  src="{{ url_for('static',filename='scripts/bpm.js') }}"></script>
+</body>
+</html>

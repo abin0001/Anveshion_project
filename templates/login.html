@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Matteo Bruni">
+    <title>Signin Template - tsParticles</title>
+
+    <!-- Custom styles for this template -->
+    <!-- <link href="css/particles.css" rel="stylesheet"/> -->
+    <link type="text/css" href="{{ url_for('static',filename='styles/auth.css') }}" rel="stylesheet"/>
+</head>
+
+<body>
+<div id="tsparticles"></div>
+<main class="box">
+    <h2>Login</h2>
+    <form action="/login" method="post">
+        <div class="inputBox">
+            <label for="userName">Username</label>
+            <input type="text" name="username" id="username" placeholder="type your username" required/>
+        </div>
+        <div class="inputBox">
+            <label for="userPassword">Password</label>
+            <input type="password" name="password" id="password" placeholder="type your password"
+                   required/>
+        </div>
+        <div>
+            <button type="submit" name="" style="float: left;">Submit</button>
+            <a class="button" href="{{url_for('register')}}" style="float: left;">Register</a>
+        </div>
+    </form>
+</main>
+<footer>
+</footer>
+
+
+</body>
+
+</html>
